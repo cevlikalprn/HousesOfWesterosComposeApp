@@ -123,7 +123,7 @@ fun HouseDetailsScreen(houseId: Int, navController: NavController?) {
                     words = house.houseWords,
                     horizontalAlignment = Alignment.CenterHorizontally
                 )
-                Spacer(modifier = Modifier.height(48.dp))
+                Spacer(modifier = Modifier.height(24.dp))
                 HouseHistory(houseHistory = house.houseHistory)
             }
         }
