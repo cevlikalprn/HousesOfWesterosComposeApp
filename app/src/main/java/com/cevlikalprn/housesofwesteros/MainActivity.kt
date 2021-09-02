@@ -5,13 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.cevlikalprn.housesofwesteros.ui.theme.HousesOfWesterosTheme
@@ -37,19 +38,42 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun HouseListScreen(houses: List<HouesesOfWesteros> = Constants.houseList) {
+fun HouseListScreen(houses: List<HousesOfWesteros> = Constants.houseList) {
     Scaffold(
-        topBar = { AppBar(title = "Houeses of Westeros", icon = Icons.Default.Home)}
+        topBar = { AppBar(title = "Houses of Westeros", icon = Icons.Default.Home) }
     ) {
         Surface(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = Color.LightGray)
         ) {
-            LazyColumn{
-                items(items = houses){ house ->
+            LazyColumn {
+                items(items = houses) { house ->
                     HouseCard(house = house)
                 }
+            }
+        }
+    }
+}
+
+@Composable
+fun HouseDetailsScreen() {
+    Scaffold(
+        topBar = { AppBar(title = "Houeses of Westeros", icon = Icons.Default.ArrowBack) }
+    ) {
+        Surface(
+            modifier = Modifier
+                .fillMaxSize()
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                HousePicture(
+                    housePicture = "picture",
+                    imageSize = 240.dp
+                )
+                HouseContent(
+                    houseName = "Alperen Çevlik",
+                    words = "words",
+                    horizontalAlignment = Alignment.CenterHorizontally
+                )
             }
         }
     }
@@ -59,18 +83,19 @@ fun HouseListScreen(houses: List<HouesesOfWesteros> = Constants.houseList) {
 fun AppBar(title: String, icon: ImageVector) {
     TopAppBar(
         title = { Text(text = title) },
-        navigationIcon = { Icon(
-            imageVector = icon,
-            contentDescription = "Home",
-            modifier = Modifier.padding(horizontal = 8.dp)
-        )
+        navigationIcon = {
+            Icon(
+                imageVector = icon,
+                contentDescription = "Home",
+                modifier = Modifier.padding(horizontal = 8.dp)
+            )
         },
         backgroundColor = MaterialTheme.colors.background
     )
 }
 
 @Composable
-fun HouseCard(house: HouesesOfWesteros) {
+fun HouseCard(house: HousesOfWesteros) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -83,17 +108,18 @@ fun HouseCard(house: HouesesOfWesteros) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
-            HousePicture(housePicture = house.housePicture)
+            HousePicture(housePicture = house.housePicture, imageSize = 90.dp)
             HouseContent(
                 houseName = house.houseName,
-                words = house.houseWords
+                words = house.houseWords,
+                horizontalAlignment = Alignment.Start
             )
         }
     }
 }
 
 @Composable
-fun HousePicture(housePicture: String) {
+fun HousePicture(housePicture: String, imageSize: Dp) {
     Surface(
         modifier = Modifier.padding(12.dp),
         shape = CircleShape,
@@ -102,10 +128,10 @@ fun HousePicture(housePicture: String) {
         Image(
             painter = rememberImagePainter(
                 data = housePicture,
-                builder = {crossfade(true)}
+                builder = { crossfade(true) }
             ),
             contentDescription = "house picture",
-            modifier = Modifier.size(90.dp),
+            modifier = Modifier.size(imageSize),
             contentScale = ContentScale.Fit
         )
 
@@ -113,22 +139,32 @@ fun HousePicture(housePicture: String) {
 }
 
 @Composable
-fun HouseContent(houseName: String, words: String) {
-    Column {
+fun HouseContent(houseName: String, words: String, horizontalAlignment: Alignment.Horizontal) {
+    Column(horizontalAlignment = horizontalAlignment) {
         Text(
             text = houseName,
             style = MaterialTheme.typography.h5
         )
         Text(
             text = words,
-            style = MaterialTheme.typography.body1
+            style = MaterialTheme.typography.body1,
         )
     }
 }
 
+
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+fun HouseDetailsPreview() {
+    HousesOfWesterosTheme {
+        HouseDetailsScreen()
+    }
+}
+
+
+@Preview(showBackground = true)
+@Composable
+fun HouseListPreview() {
     HousesOfWesterosTheme {
         HouseListScreen()
     }
