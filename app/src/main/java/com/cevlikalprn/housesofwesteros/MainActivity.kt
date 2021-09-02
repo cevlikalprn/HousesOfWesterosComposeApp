@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun HousesOfWesterosApplication(houses: List<HousesOfWesteros> = Constants.houseList) {
+fun HousesOfWesterosApplication(houses: List<House> = Constants.houseList) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "house_list_screen") {
@@ -65,7 +65,7 @@ fun HousesOfWesterosApplication(houses: List<HousesOfWesteros> = Constants.house
 
 @Composable
 fun HouseListScreen(
-    houses: List<HousesOfWesteros>,
+    houses: List<House>,
     navController: NavController?
 ) {
     Scaffold(
@@ -148,7 +148,7 @@ fun AppBar(title: String, icon: ImageVector, clickAction: () -> Unit) {
 }
 
 @Composable
-fun HouseCard(house: HousesOfWesteros, clickAction: () -> Unit) {
+fun HouseCard(house: House, clickAction: () -> Unit) {
     Card(
         modifier = Modifier
             .clickable(onClick = clickAction)

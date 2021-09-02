@@ -1,8 +1,6 @@
 package com.cevlikalprn.housesofwesteros
 
-import java.util.ArrayList
-
-data class HousesOfWesteros(
+data class House(
     val houseId: Int,
     val houseName: String,
     val houseWords: String,
@@ -10,7 +8,7 @@ data class HousesOfWesteros(
     val houseHistory: String
 )
 
-fun getHouse(houseId: Int): HousesOfWesteros {
+fun getHouse(houseId: Int): House {
     val house = Constants.houseList.first { house ->
         houseId == house.houseId
     }

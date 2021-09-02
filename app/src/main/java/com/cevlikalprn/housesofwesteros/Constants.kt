@@ -4,19 +4,19 @@ import java.util.ArrayList
 
 object Constants {
 
-    val houseList: ArrayList<HousesOfWesteros> = arrayListOf(
+    val houseList: ArrayList<House> = arrayListOf(
 
-        HousesOfWesteros(
+        House(
             houseId = 0,
             houseName = "Stark",
             houseWords = "Winter is Coming",
-            housePicture = "https://lh3.googleusercontent.com/proxy/TgESEnD2PiDahamT_lksb4Om9Ow0ecv5bLZBwiBqw5EZVfjpqO5X1B6376cdZBkrIExPz2yeoxNThZS76ehuW7NjwtthkfGm8IZ9q5be0tjnbz9c",
+            housePicture = "https://lh3.googleusercontent.com/proxy/ZhN715OJ0Eqzqp8onT0jbSd1SgDgIH_fhXwMY7RmhQrq7eA7gxdF0EPaThn6mG1EHUMyLYnOpuQ8zVuX5GjGLOJJ0b8L2ChefciZw-HY-aDEnFJ_",
             houseHistory =
                 "rulers of the North from the castle of Winterfell and the royal house of the independent Kingdom of the North." +
                         " Retook their lands from House Bolton, who usurped House Stark at the Red Wedding, after the Battle of the Bastards." +
                         " The house is ruled by Sansa Stark, the Queen in the North. The heir is Princess Arya Stark."
         ),
-        HousesOfWesteros(
+        House(
             houseId = 1,
             houseName = "Arryn",
             houseWords = "As High as Honor",
@@ -25,7 +25,7 @@ object Constants {
                     "It was integrated with the Kingdom of the North until King Jon Snow abdicated. " +
                     "Its current head is Lord Robin Arryn, who is also the only current member."
         ),
-        HousesOfWesteros(
+        House(
             houseId = 2,
             houseName = "Baratheon",
             houseWords = "Ours is the Fury",
@@ -36,7 +36,7 @@ object Constants {
                     " Legally went extinct when King Tommen Baratheon killed himself in King's Landing after the destruction of the Great Sept of Baelor. " +
                     "Restored when Queen Daenerys Targaryen legitimized Robert's unacknowledged bastard son Gendry Baratheon."
         ),
-        HousesOfWesteros(
+        House(
             houseId = 3,
             houseName = "Tully",
             houseWords = "Family, Duty, Honor",
@@ -45,7 +45,7 @@ object Constants {
                     " Riverrun was under Frey and Lannister control until Daenerys Targaryen overthrew Queen Cersei Lannister in the Battle of King's Landing." +
                     " Lord Edmure Tully was restored to his former positions sometime after Arya Stark assassinated all the males of House Frey."
         ),
-        HousesOfWesteros(
+        House(
             houseId = 4,
             houseName = "Greyjoy",
             houseWords = "We Do Not Sow",
@@ -55,7 +55,7 @@ object Constants {
                     "However, following the Battle of King's Landing, and with Euron's death at the hands of Ser Jaime Lannister, " +
                     "Yara is now the head of the house."
         ),
-        HousesOfWesteros(
+        House(
             houseId = 5,
             houseName = "Lannister",
             houseWords = "Hear Me Roar!",
@@ -65,14 +65,14 @@ object Constants {
                     "Its leadership was disputed by Queen Cersei I Lannister and Hand of the Queen to Daenerys Targaryen," +
                     " Lord Tyrion Lannister, who became the head of House Lannister after the Battle of King's Landing."
         ),
-        HousesOfWesteros(
+        House(
             houseId = 6,
             houseName = "Tyrell",
             houseWords = "Growing Strong",
             housePicture = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToWVkgHIetjsUcayxoPP520LXz44ZLNtwwOw&usqp=CAU",
             houseHistory ="rulers of the Reach from the castle of Highgarden after the extinction of House Gardener. " +
                     "The bloodline is wiped out as a result of the destruction of the Great Sept of Baelor and the Sack of Highgarden."
-        ),HousesOfWesteros(
+        ),House(
             houseId = 7,
             houseName = "Martell",
             houseWords = "Unbowed, Unbent, Unbroken",
@@ -81,7 +81,7 @@ object Constants {
                     " Deposed by Ellaria Sand and three of the Sand Snakes in their coup." +
                     " An unnamed Martell retook control over Dorne after Ellaria's defeat."
         ),
-        HousesOfWesteros(
+        House(
             houseId = 8,
             houseName = "Targaryen",
             houseWords = "Fire and Blood",
