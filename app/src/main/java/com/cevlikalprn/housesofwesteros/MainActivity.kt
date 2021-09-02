@@ -199,6 +199,7 @@ fun HouseContent(houseName: String, words: String, horizontalAlignment: Alignmen
             text = houseName,
             style = MaterialTheme.typography.h5
         )
+        Spacer(modifier = Modifier.padding(2.dp))
         Text(
             text = words,
             style = MaterialTheme.typography.body1,
