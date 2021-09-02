@@ -22,6 +22,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberImagePainter
 import com.cevlikalprn.housesofwesteros.ui.theme.HousesOfWesterosTheme
 import com.cevlikalprn.housesofwesteros.ui.theme.myBorderColor
@@ -31,10 +34,21 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             HousesOfWesterosTheme {
-                HouseListScreen()
+                HousesOfWesterosApplication()
             }
         }
     }
+}
+
+@Composable
+fun HousesOfWesterosApplication() {
+    val navController = rememberNavController()
+
+    NavHost(navController = navController, startDestination = "house_list_screen") {
+        composable(route = "house_list_screen") { HouseListScreen() }
+        composable(route = "house_details_screen") { HouseDetailsScreen() }
+    }
+
 }
 
 @Composable
