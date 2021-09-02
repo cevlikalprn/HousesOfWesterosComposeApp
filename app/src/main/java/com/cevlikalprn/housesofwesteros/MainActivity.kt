@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -73,9 +74,11 @@ fun HouseCard() {
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Start
         ) {
             HousePicture()
-            HouseContent()
+            HouseContent("House Name", "Words")
         }
     }
 }
@@ -85,7 +88,7 @@ fun HousePicture() {
     Surface(
         modifier = Modifier.padding(12.dp),
         shape = CircleShape,
-        border = BorderStroke(width = 2.dp, color = Color.Green)
+        border = BorderStroke(width = 2.dp, color = Color.Red)
     ) {
         Image(
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
@@ -96,8 +99,17 @@ fun HousePicture() {
 }
 
 @Composable
-fun HouseContent() {
-    Text(text = "Test")
+fun HouseContent(houseName: String, words: String) {
+    Column {
+        Text(
+            text = houseName,
+            style = MaterialTheme.typography.h5
+        )
+        Text(
+            text = words,
+            style = MaterialTheme.typography.body1
+        )
+    }
 }
 
 @Preview(showBackground = true)
