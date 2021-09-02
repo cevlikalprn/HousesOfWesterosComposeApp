@@ -8,6 +8,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -35,7 +37,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun HouseListScreen() {
+fun HouseListScreen(houses: List<HouesesOfWesteros> = Constants.houseList) {
     Scaffold(
         topBar = { AppBar(title = "Houeses of Westeros", icon = Icons.Default.Home)}
     ) {
@@ -44,7 +46,11 @@ fun HouseListScreen() {
                 .fillMaxSize()
                 .background(color = Color.LightGray)
         ) {
-            HouseCard()
+            LazyColumn{
+                items(items = houses){ house ->
+                    HouseCard(house = house)
+                }
+            }
         }
     }
 }
@@ -64,7 +70,7 @@ fun AppBar(title: String, icon: ImageVector) {
 }
 
 @Composable
-fun HouseCard() {
+fun HouseCard(house: HouesesOfWesteros) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -78,7 +84,10 @@ fun HouseCard() {
             horizontalArrangement = Arrangement.Start
         ) {
             HousePicture()
-            HouseContent("House Name", "Words")
+            HouseContent(
+                houseName = house.houseName,
+                words = house.houseWords
+            )
         }
     }
 }

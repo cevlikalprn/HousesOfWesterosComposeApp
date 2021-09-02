@@ -15,48 +15,48 @@ object Constants {
         HouesesOfWesteros(
             houseId = 1,
             houseName = "Arryn",
-            houseWords = "Winter is Coming",
+            houseWords = "As High as Honor",
             housePicture = "https://cdn.icon-icons.com/icons2/1819/PNG/512/stark_115482.png"
         ),
         HouesesOfWesteros(
             houseId = 2,
             houseName = "Baratheon",
-            houseWords = "Winter is Coming",
+            houseWords = "Ours is the Fury",
             housePicture = "https://cdn.icon-icons.com/icons2/1819/PNG/512/stark_115482.png"
         ),
         HouesesOfWesteros(
             houseId = 3,
             houseName = "Tully",
-            houseWords = "Winter is Coming",
+            houseWords = "Family, Duty, Honor",
             housePicture = "https://cdn.icon-icons.com/icons2/1819/PNG/512/stark_115482.png"
         ),
         HouesesOfWesteros(
             houseId = 4,
             houseName = "Greyjoy",
-            houseWords = "Winter is Coming",
+            houseWords = "We Do Not Sow",
             housePicture = "https://cdn.icon-icons.com/icons2/1819/PNG/512/stark_115482.png"
         ),
         HouesesOfWesteros(
             houseId = 5,
             houseName = "Lannister",
-            houseWords = "Winter is Coming",
+            houseWords = "Hear Me Roar!",
             housePicture = "https://cdn.icon-icons.com/icons2/1819/PNG/512/stark_115482.png"
         ),
         HouesesOfWesteros(
             houseId = 6,
             houseName = "Tyrell",
-            houseWords = "Winter is Coming",
+            houseWords = "Growing Strong",
             housePicture = "https://cdn.icon-icons.com/icons2/1819/PNG/512/stark_115482.png"
         ),HouesesOfWesteros(
             houseId = 7,
             houseName = "Martell",
-            houseWords = "Winter is Coming",
+            houseWords = "Unbowed, Unbent, Unbroken",
             housePicture = "https://cdn.icon-icons.com/icons2/1819/PNG/512/stark_115482.png"
         ),
         HouesesOfWesteros(
             houseId = 8,
             houseName = " Targaryen",
-            houseWords = "Winter is Coming",
+            houseWords = "Fire and Blood",
             housePicture = "https://cdn.icon-icons.com/icons2/1819/PNG/512/stark_115482.png"
         )
 
