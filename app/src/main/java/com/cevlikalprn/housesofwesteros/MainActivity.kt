@@ -18,11 +18,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
 import com.cevlikalprn.housesofwesteros.ui.theme.HousesOfWesterosTheme
 import com.cevlikalprn.housesofwesteros.ui.theme.myCardBackgroundColor
 
@@ -84,7 +87,7 @@ fun HouseCard(house: HouesesOfWesteros) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
-            HousePicture()
+            HousePicture(housePicture = house.housePicture)
             HouseContent(
                 houseName = house.houseName,
                 words = house.houseWords
@@ -94,17 +97,22 @@ fun HouseCard(house: HouesesOfWesteros) {
 }
 
 @Composable
-fun HousePicture() {
+fun HousePicture(housePicture: String) {
     Surface(
         modifier = Modifier.padding(12.dp),
         shape = CircleShape,
         border = BorderStroke(width = 2.dp, color = MaterialTheme.colors.myCardBackgroundColor)
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_foreground),
+            painter = rememberImagePainter(
+                data = housePicture,
+                builder = {crossfade(true)}
+            ),
             contentDescription = "house picture",
-            modifier = Modifier.size(90.dp)
+            modifier = Modifier.size(90.dp),
+            contentScale = ContentScale.Fit
         )
+
     }
 }
 
