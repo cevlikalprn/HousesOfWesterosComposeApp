@@ -24,6 +24,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cevlikalprn.housesofwesteros.ui.theme.HousesOfWesterosTheme
+import com.cevlikalprn.housesofwesteros.ui.theme.myCardBackgroundColor
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,7 +76,7 @@ fun HouseCard(house: HouesesOfWesteros) {
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight(align = Alignment.Top)
-            .padding(16.dp),
+            .padding(start = 18.dp, end = 18.dp, top = 12.dp, bottom = 12.dp),
         backgroundColor = Color.White
     ) {
         Row(
@@ -97,7 +98,7 @@ fun HousePicture() {
     Surface(
         modifier = Modifier.padding(12.dp),
         shape = CircleShape,
-        border = BorderStroke(width = 2.dp, color = Color.Red)
+        border = BorderStroke(width = 2.dp, color = MaterialTheme.colors.myCardBackgroundColor)
     ) {
         Image(
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
