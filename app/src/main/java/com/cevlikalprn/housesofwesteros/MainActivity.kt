@@ -3,10 +3,12 @@ package com.cevlikalprn.housesofwesteros
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -80,10 +82,17 @@ fun HouseCard() {
 
 @Composable
 fun HousePicture() {
+    Surface(
+        modifier = Modifier.padding(12.dp),
+        shape = CircleShape,
+        border = BorderStroke(width = 2.dp, color = Color.Green)
+    ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_launcher_background),
+            painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = "house picture",
-            modifier = Modifier.size(90.dp))
+            modifier = Modifier.size(90.dp)
+        )
+    }
 }
 
 @Composable
