@@ -9,6 +9,13 @@ data class HousesOfWesteros(
     val housePicture: String
 )
 
+fun getHouse(houseId: Int): HousesOfWesteros {
+    val house = Constants.houseList.first { house ->
+        houseId == house.houseId
+    }
+    return house
+}
+
 
 
 

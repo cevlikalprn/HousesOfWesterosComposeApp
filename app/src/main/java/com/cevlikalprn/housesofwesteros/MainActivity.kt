@@ -52,23 +52,31 @@ fun HousesOfWesterosApplication() {
     NavHost(navController = navController, startDestination = "house_list_screen") {
         composable(route = "house_list_screen") { HouseListScreen(navController = navController) }
         composable(
-            route = "house_details_screen") {
-            backStackEntry ->
+            route = "house_details_screen/{houseId}",
+            arguments = listOf(navArgument("houseId", builder = { type = NavType.IntType }))
+        ) { backStackEntry ->
             HouseDetailsScreen(
-                navController = navController
-            ) }
+                navController = navController,
+                houseId = backStackEntry.arguments!!.getInt("houseId")
+            )
+        }
     }
 
 }
 
 @Composable
-fun HouseListScreen(houses: List<HousesOfWesteros> = Constants.houseList, navController: NavController?) {
+fun HouseListScreen(
+    houses: List<HousesOfWesteros> = Constants.houseList,
+    navController: NavController?
+) {
     Scaffold(
-        topBar = { AppBar(
-            title = "Houses of Westeros",
-            icon = Icons.Default.Home,
-            clickAction = {}
-        ) }
+        topBar = {
+            AppBar(
+                title = "Houses of Westeros",
+                icon = Icons.Default.Home,
+                clickAction = {}
+            )
+        }
     ) {
         Surface(
             modifier = Modifier
@@ -79,7 +87,7 @@ fun HouseListScreen(houses: List<HousesOfWesteros> = Constants.houseList, navCon
                     HouseCard(
                         house = house,
                         clickAction = {
-                            navController?.navigate(route = "house_details_screen")
+                            navController?.navigate(route = "house_details_screen/${house.houseId}")
                         })
                 }
             }
@@ -88,13 +96,16 @@ fun HouseListScreen(houses: List<HousesOfWesteros> = Constants.houseList, navCon
 }
 
 @Composable
-fun HouseDetailsScreen(navController: NavController?) {
+fun HouseDetailsScreen(houseId: Int, navController: NavController?) {
+    val house  = getHouse(houseId = houseId)
     Scaffold(
-        topBar = { AppBar(
-            title = "Houeses of Westeros",
-            icon = Icons.Default.ArrowBack,
-            clickAction = {navController?.navigateUp()}
-        ) }
+        topBar = {
+            AppBar(
+                title = "Houeses of Westeros",
+                icon = Icons.Default.ArrowBack,
+                clickAction = { navController?.navigateUp() }
+            )
+        }
     ) {
         Surface(
             modifier = Modifier
@@ -102,12 +113,12 @@ fun HouseDetailsScreen(navController: NavController?) {
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 HousePicture(
-                    housePicture = "picture",
+                    housePicture = house.housePicture,
                     imageSize = 240.dp
                 )
                 HouseContent(
-                    houseName = "Alperen Çevlik",
-                    words = "words",
+                    houseName = house.houseName,
+                    words = house.houseWords,
                     horizontalAlignment = Alignment.CenterHorizontally
                 )
             }
@@ -196,7 +207,7 @@ fun HouseContent(houseName: String, words: String, horizontalAlignment: Alignmen
 @Composable
 fun HouseDetailsPreview() {
     HousesOfWesterosTheme {
-        HouseDetailsScreen(navController = null)
+        HouseDetailsScreen(navController = null, houseId = 0)
     }
 }
 
