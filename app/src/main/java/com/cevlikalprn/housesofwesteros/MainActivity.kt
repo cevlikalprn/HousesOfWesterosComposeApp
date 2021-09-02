@@ -1,10 +1,12 @@
 package com.cevlikalprn.housesofwesteros
 
 import android.os.Bundle
+import android.service.autofill.OnClickAction
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -22,8 +24,11 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberImagePainter
 import com.cevlikalprn.housesofwesteros.ui.theme.HousesOfWesterosTheme
@@ -45,16 +50,25 @@ fun HousesOfWesterosApplication() {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "house_list_screen") {
-        composable(route = "house_list_screen") { HouseListScreen() }
-        composable(route = "house_details_screen") { HouseDetailsScreen() }
+        composable(route = "house_list_screen") { HouseListScreen(navController = navController) }
+        composable(
+            route = "house_details_screen") {
+            backStackEntry ->
+            HouseDetailsScreen(
+                navController = navController
+            ) }
     }
 
 }
 
 @Composable
-fun HouseListScreen(houses: List<HousesOfWesteros> = Constants.houseList) {
+fun HouseListScreen(houses: List<HousesOfWesteros> = Constants.houseList, navController: NavController?) {
     Scaffold(
-        topBar = { AppBar(title = "Houses of Westeros", icon = Icons.Default.Home) }
+        topBar = { AppBar(
+            title = "Houses of Westeros",
+            icon = Icons.Default.Home,
+            clickAction = {}
+        ) }
     ) {
         Surface(
             modifier = Modifier
@@ -62,7 +76,11 @@ fun HouseListScreen(houses: List<HousesOfWesteros> = Constants.houseList) {
         ) {
             LazyColumn {
                 items(items = houses) { house ->
-                    HouseCard(house = house)
+                    HouseCard(
+                        house = house,
+                        clickAction = {
+                            navController?.navigate(route = "house_details_screen")
+                        })
                 }
             }
         }
@@ -70,9 +88,13 @@ fun HouseListScreen(houses: List<HousesOfWesteros> = Constants.houseList) {
 }
 
 @Composable
-fun HouseDetailsScreen() {
+fun HouseDetailsScreen(navController: NavController?) {
     Scaffold(
-        topBar = { AppBar(title = "Houeses of Westeros", icon = Icons.Default.ArrowBack) }
+        topBar = { AppBar(
+            title = "Houeses of Westeros",
+            icon = Icons.Default.ArrowBack,
+            clickAction = {navController?.navigateUp()}
+        ) }
     ) {
         Surface(
             modifier = Modifier
@@ -94,14 +116,16 @@ fun HouseDetailsScreen() {
 }
 
 @Composable
-fun AppBar(title: String, icon: ImageVector) {
+fun AppBar(title: String, icon: ImageVector, clickAction: () -> Unit) {
     TopAppBar(
         title = { Text(text = title) },
         navigationIcon = {
             Icon(
+                modifier = Modifier
+                    .clickable(onClick = clickAction)
+                    .padding(horizontal = 8.dp),
                 imageVector = icon,
                 contentDescription = "Home",
-                modifier = Modifier.padding(horizontal = 8.dp)
             )
         },
         backgroundColor = MaterialTheme.colors.background
@@ -109,9 +133,10 @@ fun AppBar(title: String, icon: ImageVector) {
 }
 
 @Composable
-fun HouseCard(house: HousesOfWesteros) {
+fun HouseCard(house: HousesOfWesteros, clickAction: () -> Unit) {
     Card(
         modifier = Modifier
+            .clickable(onClick = clickAction)
             .fillMaxWidth()
             .wrapContentHeight(align = Alignment.Top)
             .padding(start = 18.dp, end = 18.dp, top = 12.dp, bottom = 12.dp),
@@ -171,7 +196,7 @@ fun HouseContent(houseName: String, words: String, horizontalAlignment: Alignmen
 @Composable
 fun HouseDetailsPreview() {
     HousesOfWesterosTheme {
-        HouseDetailsScreen()
+        HouseDetailsScreen(navController = null)
     }
 }
 
@@ -180,6 +205,6 @@ fun HouseDetailsPreview() {
 @Composable
 fun HouseListPreview() {
     HousesOfWesterosTheme {
-        HouseListScreen()
+        HouseListScreen(navController = null)
     }
 }
