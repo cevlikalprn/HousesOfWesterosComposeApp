@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -18,16 +17,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.cevlikalprn.housesofwesteros.ui.theme.HousesOfWesterosTheme
-import com.cevlikalprn.housesofwesteros.ui.theme.myCardBackgroundColor
+import com.cevlikalprn.housesofwesteros.ui.theme.myBorderColor
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -101,7 +97,7 @@ fun HousePicture(housePicture: String) {
     Surface(
         modifier = Modifier.padding(12.dp),
         shape = CircleShape,
-        border = BorderStroke(width = 2.dp, color = MaterialTheme.colors.myCardBackgroundColor)
+        border = BorderStroke(width = 2.dp, color = MaterialTheme.colors.myBorderColor)
     ) {
         Image(
             painter = rememberImagePainter(
