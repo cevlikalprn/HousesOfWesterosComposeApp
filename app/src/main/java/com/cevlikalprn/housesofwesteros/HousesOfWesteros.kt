@@ -6,7 +6,8 @@ data class HousesOfWesteros(
     val houseId: Int,
     val houseName: String,
     val houseWords: String,
-    val housePicture: String
+    val housePicture: String,
+    val houseHistory: String
 )
 
 fun getHouse(houseId: Int): HousesOfWesteros {

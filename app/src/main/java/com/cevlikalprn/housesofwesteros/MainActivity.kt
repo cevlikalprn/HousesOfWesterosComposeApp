@@ -1,7 +1,6 @@
 package com.cevlikalprn.housesofwesteros
 
 import android.os.Bundle
-import android.service.autofill.OnClickAction
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -46,11 +45,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun HousesOfWesterosApplication() {
+fun HousesOfWesterosApplication(houses: List<HousesOfWesteros> = Constants.houseList) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "house_list_screen") {
-        composable(route = "house_list_screen") { HouseListScreen(navController = navController) }
+        composable(route = "house_list_screen") { HouseListScreen(houses = houses,navController = navController) }
         composable(
             route = "house_details_screen/{houseId}",
             arguments = listOf(navArgument("houseId", builder = { type = NavType.IntType }))
@@ -66,7 +65,7 @@ fun HousesOfWesterosApplication() {
 
 @Composable
 fun HouseListScreen(
-    houses: List<HousesOfWesteros> = Constants.houseList,
+    houses: List<HousesOfWesteros>,
     navController: NavController?
 ) {
     Scaffold(
@@ -111,16 +110,21 @@ fun HouseDetailsScreen(houseId: Int, navController: NavController?) {
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
                 HousePicture(
                     housePicture = house.housePicture,
                     imageSize = 240.dp
                 )
                 HouseContent(
-                    houseName = house.houseName,
+                    houseName = house.houseName + " House",
                     words = house.houseWords,
                     horizontalAlignment = Alignment.CenterHorizontally
                 )
+                Spacer(modifier = Modifier.height(48.dp))
+                HouseHistory(houseHistory = house.houseHistory)
             }
         }
     }
@@ -202,6 +206,14 @@ fun HouseContent(houseName: String, words: String, horizontalAlignment: Alignmen
     }
 }
 
+@Composable
+fun HouseHistory(houseHistory: String) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(text = "History", style = MaterialTheme.typography.h5)
+        Text(text = houseHistory, modifier = Modifier.padding(16.dp))
+    }
+
+}
 
 @Preview(showBackground = true)
 @Composable
@@ -216,6 +228,6 @@ fun HouseDetailsPreview() {
 @Composable
 fun HouseListPreview() {
     HousesOfWesterosTheme {
-        HouseListScreen(navController = null)
+        HouseListScreen(houses= Constants.houseList ,navController = null)
     }
 }
