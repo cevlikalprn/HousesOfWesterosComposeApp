@@ -100,7 +100,7 @@ fun HouseDetailsScreen(houseId: Int, navController: NavController?) {
     Scaffold(
         topBar = {
             AppBar(
-                title = "Houeses of Westeros",
+                title = "House",
                 icon = Icons.Default.ArrowBack,
                 clickAction = { navController?.navigateUp() }
             )
