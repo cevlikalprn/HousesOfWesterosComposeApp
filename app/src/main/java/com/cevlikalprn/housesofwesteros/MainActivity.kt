@@ -176,8 +176,8 @@ fun HouseCard(house: House, clickAction: () -> Unit) {
 fun HousePicture(housePicture: String, imageSize: Dp) {
     Surface(
         modifier = Modifier.padding(12.dp),
-        shape = CircleShape,
-        border = BorderStroke(width = 2.dp, color = MaterialTheme.colors.myBorderColor)
+        //shape = CircleShape,
+        //border = BorderStroke(width = 2.dp, color = MaterialTheme.colors.myBorderColor)
     ) {
         Image(
             painter = rememberImagePainter(
